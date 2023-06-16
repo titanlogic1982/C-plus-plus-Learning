@@ -1,39 +1,38 @@
 ﻿
-#include "Testing Numbers.h"
 #include <iostream>
-using namespace std;
-// Simple program to count and check for prime numbers.
+
+// Function to check if a number is prime
+bool isPrime(int number)
+{
+    // Numbers less than 2 are not prime
+    if (number < 2)
+        return false;
+
+    // Check for divisors from 2 to number/2
+    for (int i = 2; i <= number / 2; ++i)
+    {
+        // If a divisor is found, number is not prime
+        if (number % i == 0)
+            return false;
+    }
+
+    // Number is prime if no divisors are found
+    return true;
+}
+
 int main()
 {
-	bool running = true;
-	int countNumber{};
-	int i;
-	bool is_prime = true;
-	while (running)
-	{
+    int countNumber = 2;
 
-		// 0 and 1 are not prime numbers
-		if (countNumber == 0 || countNumber == 1)
-		{
-			is_prime = false;
-		}
+    while (true)
+    {
+        // Check if countNumber is prime using the isPrime() function
+        if (isPrime(countNumber))
+            std::cout << countNumber << " is a prime number\n";
 
-		// loop to check if countNumber is prime
-		for (i = 2; i <= countNumber / 2; ++i)
-		{
-			if (countNumber % i == 0) {
-				is_prime = false;
-			}
-		}
+        // Increment countNumber for the next iteration
+        countNumber++;
+    }
 
-		if (is_prime)
-		{
-			cout << countNumber << " is a prime number";
-			
-
-		}
-		is_prime = true;
-		countNumber++;
-	}
-	return 0;
+    return 0;
 }
